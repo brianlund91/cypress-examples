@@ -18,4 +18,12 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  on('task', {
+    pause (ms) {
+      return new Promise((resolve) => {
+        // tasks should not resolve with undefined
+        setTimeout(() => resolve(null), ms)
+      })
+    }
+  });
 }
